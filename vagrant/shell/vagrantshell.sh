@@ -35,6 +35,9 @@ roles_list[0]='geerlingguy.java'
 roles_list[1]='geerlingguy.mysql'
 roles_list[2]='geerlingguy.nodejs'
 roles_list[3]='geerlingguy.git'
+roles_list[4]='geerlingguy.apache'
+roles_list[5]='geerlingguy.firewall'
+roles_list[6]='geerlingguy.composer'
 
 for role_and_version in "${roles_list[@]}"
 do

@@ -7,6 +7,12 @@
     - vars/main.yml
 
   roles:
+    - { role: geerlingguy.apache }
+
+    - { role: geerlingguy.firewall }
+
+    - { role: geerlingguy.composer }
+    
     - role: geerlingguy.java
       when: "ansible_os_family == 'RedHat'"
       java_packages:
@@ -15,6 +21,6 @@
     - role: geerlingguy.nodejs
 
     - { role: geerlingguy.mysql }
-    
+
     - { role: geerlingguy.git }
 
