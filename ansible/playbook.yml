@@ -1,0 +1,24 @@
+---
+- name: Server Config LAMP
+  hosts: "webservers"
+  become: true
+  become_user: root
+  roles:
+    - role: geerlingguy.ntp
+      ntp_timezone: Europe/Madrid
+
+    - { role: geerlingguy.apache }
+    - { role: geerlingguy.firewall }
+
+    - role: geerlingguy.repo-remi
+      when: ansible_os_family == 'RedHat'
+
+    - { role: geerlingguy.php-versions }
+    - { role: geerlingguy.php }
+    - { role: geerlingguy.composer }
+
+    - { role: geerlingguy.mysql }
+
+  tasks:
+    - name: Create phpinfo(); on info.php
+      template: src=templates/info.php dest=/var/www/html/info.php
