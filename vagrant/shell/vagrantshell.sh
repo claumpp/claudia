@@ -17,7 +17,7 @@ then
     rpm --import /temp/RPM-GPG-KEY-EPEL-6
     rpm -ivh /tmp/epel-release-6-8.noarch.rpm
     yum repolist
-    # Update Centos 6.5
+    # Update Centos 6
     sudo yum update -y
     
     # Install Ansible
@@ -31,10 +31,10 @@ fi
     echo 'LC_ALL=en_US.utf-8' > /etc/environment
 # Installing Ansible Galaxy
 echo "-> Installing Ansibe Galaxy Modules"
-role_list[0]='geerlingguy.java'
-role_list[1]='geerlingguy.mysql'
-role_list[2]='geerlingguy.nodejs'
-role_list[3]='geerlingguy.git'
+roles_list[0]='geerlingguy.java'
+roles_list[1]='geerlingguy.mysql'
+roles_list[2]='geerlingguy.nodejs'
+roles_list[3]='geerlingguy.git'
 
 for role_and_version in "${roles_list[@]}"
 do
@@ -58,6 +58,7 @@ sed -i --follow-symlinks 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selin
 echo "-> Execute Ansible"
 ansible-playbook /ansible/playbook.yml -i /ansible/inventories/hosts --connection=local
 
+exit 0
 # echo "Reset machine"
-sudo reboot;
+#sudo reboot;
 
